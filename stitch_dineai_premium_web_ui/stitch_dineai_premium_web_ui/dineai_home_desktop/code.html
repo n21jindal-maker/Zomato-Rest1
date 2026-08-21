@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DineAI - Find Your Perfect Restaurant</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#19120a",
+                        "secondary-container": "#533294",
+                        "tertiary": "#9bd9ff",
+                        "on-background": "#eee0d2",
+                        "tertiary-fixed": "#c4e7ff",
+                        "outline-variant": "#524534",
+                        "background": "#19120a",
+                        "primary-container": "#f5a623",
+                        "secondary-fixed": "#eaddff",
+                        "secondary-fixed-dim": "#d2bcff",
+                        "primary-fixed-dim": "#ffb955",
+                        "on-tertiary-container": "#004d6a",
+                        "on-secondary": "#3c167c",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed-dim": "#7cd0ff",
+                        "on-secondary-fixed-variant": "#533294",
+                        "on-primary-fixed-variant": "#633f00",
+                        "outline": "#9f8e7a",
+                        "tertiary-container": "#3ac2ff",
+                        "surface-container-lowest": "#130d06",
+                        "surface-bright": "#40382e",
+                        "on-secondary-fixed": "#25005a",
+                        "surface-container-low": "#211a12",
+                        "inverse-surface": "#eee0d2",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "surface-tint": "#ffb955",
+                        "surface": "#19120a",
+                        "on-error-container": "#ffdad6",
+                        "surface-container": "#251e16",
+                        "on-primary-fixed": "#291800",
+                        "on-primary": "#452b00",
+                        "on-surface": "#eee0d2",
+                        "on-tertiary-fixed-variant": "#004c69",
+                        "secondary": "#d2bcff",
+                        "on-tertiary": "#00344a",
+                        "inverse-on-surface": "#372f26",
+                        "surface-container-high": "#302920",
+                        "on-primary-container": "#644000",
+                        "on-surface-variant": "#d7c3ae",
+                        "on-secondary-container": "#c3a6ff",
+                        "primary-fixed": "#ffddb4",
+                        "primary": "#ffc880",
+                        "surface-variant": "#3c332a",
+                        "on-tertiary-fixed": "#001e2c",
+                        "inverse-primary": "#835500",
+                        "surface-container-highest": "#3c332a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "auto",
+                        "sm": "16px",
+                        "lg": "40px",
+                        "margin-mobile": "20px",
+                        "xl": "64px",
+                        "gutter": "16px",
+                        "base": "4px",
+                        "md": "24px",
+                        "xs": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Outfit"],
+                        "label-sm": ["Outfit"],
+                        "body-lg": ["Outfit"],
+                        "headline-lg-mobile": ["Outfit"],
+                        "label-md": ["Outfit"],
+                        "display-lg": ["Outfit"],
+                        "body-md": ["Outfit"],
+                        "headline-lg": ["Outfit"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #19120a;
+            background-image: radial-gradient(circle at 50% 0%, rgba(83, 50, 148, 0.15) 0%, transparent 70%);
+            color: #eee0d2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .glass-card {
+            background: rgba(37, 30, 22, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .input-glow:focus-within {
+            border-color: #f5a623;
+            box-shadow: inset 0 0 10px rgba(245, 166, 35, 0.2), 0 0 15px rgba(245, 166, 35, 0.1);
+        }
+
+        .btn-pulse {
+            animation: pulse-amber 2s infinite;
+        }
+
+        @keyframes pulse-amber {
+            0% { box-shadow: 0 0 0 0 rgba(245, 166, 35, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(245, 166, 35, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(245, 166, 35, 0); }
+        }
+
+        /* Custom Range Slider */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #f5a623;
+            cursor: pointer;
+            margin-top: -10px;
+            box-shadow: 0 0 15px rgba(245, 166, 35, 0.5);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #3c332a;
+            border-radius: 2px;
+        }
+        
+        .pill-active {
+            background-color: rgba(245, 166, 35, 0.15);
+            border-color: #f5a623;
+            color: #ffc880;
+            box-shadow: 0 0 15px rgba(245, 166, 35, 0.3);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden flex flex-col items-center">
+<!-- TopAppBar -->
+<header class="bg-surface/70 backdrop-blur-xl fixed top-0 w-full z-50 shadow-sm border-b border-white/10 flex justify-between items-center px-margin-mobile h-16 md:px-margin-desktop md:max-w-[1200px] left-1/2 -translate-x-1/2">
+<div class="flex items-center gap-xs">
+<img alt="DineAI Logo" class="h-8 w-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLuIvhsSTEnZtx6_P7l9aWQRsPuEQs4CEjn7ufIf_Zl306Y_LLBaxUMlg1aCBUg5g5Ni8dvB_-T58UX6gUN1Q7JMyR5_g2AbvJCRxBlC9xTGsE8hTW7Ribnpp0R8tFHZ-MzRMrYatHpusL-VhtnaE74ceAxxHo1IdxsAjMz8yDHawA1jnxBfvmelfsuy6oI4sQOMIYPPjYTLlIwhRalzVgPS3i-D6YhKhUtsvlXbH7LOHa6a_BMD2MuFp-k"/>
+<span class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary tracking-tight">DineAI</span>
+</div>
+<!-- Web Nav (Hidden on Mobile) -->
+<nav class="hidden md:flex items-center gap-lg">
+<a class="text-primary font-label-md text-label-md flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span>Discover</span>
+</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors duration-300 flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined">bookmark</span>
+<span>Saved</span>
+</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors duration-300 flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined">event_available</span>
+<span>Reservations</span>
+</a>
+</nav>
+<div class="flex items-center gap-sm">
+<div class="h-8 w-8 rounded-full bg-surface-variant border border-outline flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">person</span>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-[1200px] mt-24 mb-32 px-margin-mobile md:px-0 flex flex-col items-center justify-center">
+<!-- Hero Section -->
+<div class="text-center mb-xl w-full max-w-2xl mx-auto">
+<h1 class="font-display-lg text-display-lg text-on-surface mb-sm">Find your perfect restaurant</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Let our AI curate an unforgettable dining experience tailored specifically to your taste, mood, and budget.</p>
+</div>
+<!-- Glassmorphism Form Card -->
+<div class="glass-card w-full max-w-3xl rounded-2xl p-md md:p-xl mx-auto">
+<form class="flex flex-col gap-lg">
+<!-- Location & Cuisine Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Location -->
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant ml-1">Location</label>
+<div class="relative flex items-center bg-surface-container/50 border border-surface-variant rounded-xl input-glow transition-all duration-300 overflow-hidden group">
+<span class="material-symbols-outlined absolute left-sm text-on-surface-variant group-focus-within:text-primary transition-colors">location_on</span>
+<input class="w-full bg-transparent border-none py-sm pl-xl pr-sm text-on-surface font-body-md focus:ring-0 focus:outline-none placeholder:text-surface-bright" placeholder="City, neighborhood, or zip" type="text"/>
+</div>
+</div>
+<!-- Cuisine -->
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant ml-1">Cuisine</label>
+<div class="relative flex items-center bg-surface-container/50 border border-surface-variant rounded-xl input-glow transition-all duration-300 overflow-hidden group">
+<span class="material-symbols-outlined absolute left-sm text-on-surface-variant group-focus-within:text-primary transition-colors">restaurant</span>
+<select class="w-full bg-transparent border-none py-sm pl-xl pr-sm text-on-surface font-body-md focus:ring-0 focus:outline-none appearance-none cursor-pointer">
+<option class="bg-surface text-surface-bright" disabled="" selected="" value="">Select cuisine type</option>
+<option class="bg-surface text-on-surface" value="italian">Italian</option>
+<option class="bg-surface text-on-surface" value="japanese">Japanese</option>
+<option class="bg-surface text-on-surface" value="mexican">Mexican</option>
+<option class="bg-surface text-on-surface" value="french">French</option>
+<option class="bg-surface text-on-surface" value="indian">Indian</option>
+<option class="bg-surface text-on-surface" value="anything">Surprise Me</option>
+</select>
+<span class="material-symbols-outlined absolute right-sm text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Budget & Rating Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Budget -->
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant ml-1">Budget</label>
+<div class="flex gap-sm h-[52px]" id="budget-toggles">
+<button class="flex-1 rounded-xl border border-surface-variant bg-surface-container/50 font-label-md text-label-md text-on-surface-variant transition-all duration-300 hover:bg-surface-variant/50 focus:outline-none" type="button">$$</button>
+<button class="flex-1 rounded-xl border pill-active font-label-md text-label-md transition-all duration-300 focus:outline-none" type="button">$$$</button>
+<button class="flex-1 rounded-xl border border-surface-variant bg-surface-container/50 font-label-md text-label-md text-on-surface-variant transition-all duration-300 hover:bg-surface-variant/50 focus:outline-none" type="button">$$$$</button>
+</div>
+</div>
+<!-- Minimum Rating -->
+<div class="flex flex-col gap-xs justify-center">
+<div class="flex justify-between items-end ml-1 mb-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Minimum Rating</label>
+<span class="font-label-md text-label-md text-primary flex items-center gap-1">
+<span id="rating-value">4.5</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</span>
+</div>
+<div class="px-1">
+<input class="w-full" id="rating-slider" max="5" min="3" step="0.1" type="range" value="4.5"/>
+</div>
+</div>
+</div>
+<!-- Additional Preferences -->
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant ml-1">Additional Preferences</label>
+<div class="relative flex bg-surface-container/50 border border-surface-variant rounded-xl input-glow transition-all duration-300 overflow-hidden group p-1">
+<textarea class="w-full bg-transparent border-none p-sm text-on-surface font-body-md focus:ring-0 focus:outline-none placeholder:text-surface-bright resize-none" placeholder="e.g. Quiet atmosphere, vegan options, outdoor seating, dog friendly..." rows="3"></textarea>
+</div>
+</div>
+<!-- Submit Button -->
+<button class="mt-sm w-full bg-gradient-to-r from-[#f5a623] to-[#ffc880] text-[#0F0F13] font-headline-md text-headline-md py-4 rounded-xl flex items-center justify-center gap-xs shadow-[0_4px_20px_rgba(245,166,35,0.3)] hover:shadow-[0_6px_25px_rgba(245,166,35,0.5)] transition-all duration-300 scale-100 active:scale-95 btn-pulse" type="button">
+                    ✨ Find Restaurants
+                </button>
+</form>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="bg-surface/80 backdrop-blur-lg fixed bottom-0 w-full z-50 rounded-t-xl border-t border-white/5 shadow-[0_-4px_20px_rgba(0,0,0,0.5)] md:hidden flex justify-around items-center h-20 pb-safe px-4">
+<a class="flex flex-col items-center justify-center text-primary bg-primary-container/20 rounded-xl px-3 py-1 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="font-label-sm text-label-sm mt-1">Discover</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-white/5 rounded-xl px-3 py-1 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">bookmark</span>
+<span class="font-label-sm text-label-sm mt-1">Saved</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-white/5 rounded-xl px-3 py-1 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">event_available</span>
+<span class="font-label-sm text-label-sm mt-1">Reservations</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-white/5 rounded-xl px-3 py-1 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm mt-1">Profile</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="w-full py-lg flex flex-col items-center gap-xs mb-xl md:mb-0 bg-transparent text-on-surface-variant font-label-sm text-label-sm">
+<p>Powered by Gemini AI · Data from Zomato</p>
+<div class="flex gap-sm mt-2">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#">Privacy</a>
+<span>·</span>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#">Terms</a>
+</div>
+</footer>
+<script>
+        // Simple interactivity for budget pills
+        const budgetBtns = document.querySelectorAll('#budget-toggles button');
+        budgetBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                budgetBtns.forEach(b => {
+                    b.classList.remove('pill-active');
+                    b.classList.add('border-surface-variant', 'bg-surface-container/50', 'text-on-surface-variant');
+                });
+                btn.classList.add('pill-active');
+                btn.classList.remove('border-surface-variant', 'bg-surface-container/50', 'text-on-surface-variant');
+            });
+        });
+
+        // Update rating display
+        const ratingSlider = document.getElementById('rating-slider');
+        const ratingValue = document.getElementById('rating-value');
+        if(ratingSlider && ratingValue) {
+            ratingSlider.addEventListener('input', (e) => {
+                ratingValue.textContent = Number(e.target.value).toFixed(1);
+            });
+        }
+    </script>
+</body></html>

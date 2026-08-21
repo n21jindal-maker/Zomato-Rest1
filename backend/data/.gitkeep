@@ -1,0 +1,3 @@
+# Placeholder directory for the cached preprocessed dataset.
+# zomato_processed.csv will be generated here on first application startup.
+# This file is git-ignored — do not commit the CSV.

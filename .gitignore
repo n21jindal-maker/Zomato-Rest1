@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+*.spec
+
+# Virtual environment
+venv/
+.venv/
+env/
+.env/
+
+# Environment secrets — NEVER COMMIT
+backend/.env
+
+# Pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Dataset cache — large files managed locally
+backend/data/*.csv
+backend/data/*.parquet
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+node_modules/
+.next/
+.env.local
