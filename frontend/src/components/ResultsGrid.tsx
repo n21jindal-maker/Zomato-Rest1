@@ -12,13 +12,14 @@ function FiltersSummary({ filtersApplied }: { filtersApplied: Record<string, unk
   if (filtersApplied.location) parts.push(`${filtersApplied.location}`)
   if (filtersApplied.cuisine && filtersApplied.cuisine !== 'any')
     parts.push(`${filtersApplied.cuisine} cuisine`)
-  if (filtersApplied.budget) {
-    const budgetLabels: Record<string, string> = {
-      low: 'budget-friendly ($)',
-      medium: 'mid-range ($$)',
-      high: 'premium ($$$)',
+  if (filtersApplied.min_budget !== undefined || filtersApplied.max_budget !== undefined) {
+    const min = filtersApplied.min_budget || 0
+    const max = filtersApplied.max_budget
+    if (max) {
+      parts.push(`₹${min} - ₹${max}`)
+    } else {
+      parts.push(`₹${min}+`)
     }
-    parts.push(budgetLabels[filtersApplied.budget as string] || String(filtersApplied.budget))
   }
   if (filtersApplied.min_rating) parts.push(`${filtersApplied.min_rating}★+`)
 
