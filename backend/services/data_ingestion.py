@@ -92,6 +92,13 @@ def _download_from_huggingface() -> pd.DataFrame:
         from datasets import load_dataset  # type: ignore
 
         hf_dataset = load_dataset(settings.hf_dataset_id, split="train")
+        
+        # Drop large unneeded columns to prevent OOM errors on constrained environments (like Railway free tier)
+        cols_to_remove = ["reviews_list", "menu_item", "phone", "url", "address"]
+        existing_cols_to_remove = [c for c in cols_to_remove if c in hf_dataset.column_names]
+        if existing_cols_to_remove:
+            hf_dataset = hf_dataset.remove_columns(existing_cols_to_remove)
+            
         return hf_dataset.to_pandas()
     except Exception as exc:
         logger.error("Failed to download dataset from Hugging Face: %s", exc)
@@ -121,18 +128,21 @@ def _clean(df: pd.DataFrame) -> pd.DataFrame:
 
     # ── 2. Identify key columns (flexible naming) ─────────────────────────
     col_map = _detect_columns(df)
-    df = df.rename(columns=col_map)
+    df.rename(columns=col_map, inplace=True)
 
     # ── 3. Drop rows missing name or rating ───────────────────────────────
     required = ["restaurant_name", "aggregate_rating"]
     before = len(df)
-    df = df.dropna(subset=[c for c in required if c in df.columns])
+    df.dropna(subset=[c for c in required if c in df.columns], inplace=True)
     logger.info("Dropped %d rows with missing essential fields.", before - len(df))
 
     # ── Drop duplicate rows ───────────────────────────────────────────────
     before = len(df)
     subset_cols = [c for c in ["restaurant_name", "location", "address"] if c in df.columns]
-    df = df.drop_duplicates(subset=subset_cols) if subset_cols else df.drop_duplicates()
+    if subset_cols:
+        df.drop_duplicates(subset=subset_cols, inplace=True)
+    else:
+        df.drop_duplicates(inplace=True)
     logger.info("Dropped %d duplicate rows.", before - len(df))
 
     # ── 4. Normalize location ─────────────────────────────────────────────
