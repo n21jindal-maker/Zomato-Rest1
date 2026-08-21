@@ -20,13 +20,19 @@ export const metadata: Metadata = {
     'AI-powered restaurant recommendations tailored to your taste, mood, and budget. Powered by Gemini AI and the Zomato dataset.',
   keywords: ['restaurant', 'AI', 'recommendation', 'food', 'dining', 'DineAI'],
   authors: [{ name: 'DineAI' }],
-  viewport: 'width=device-width, initial-scale=1',
-  themeColor: '#19120a',
   openGraph: {
     title: 'DineAI — Find Your Perfect Restaurant',
     description: 'Let AI curate an unforgettable dining experience tailored to you.',
     type: 'website',
   },
+}
+
+import type { Viewport } from 'next'
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#19120a',
 }
 
 export default function RootLayout({
