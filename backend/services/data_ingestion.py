@@ -166,8 +166,9 @@ def _clean(df: pd.DataFrame) -> pd.DataFrame:
 
     # ── 7. Coerce rating ──────────────────────────────────────────────────
     if "aggregate_rating" in df.columns:
+        ratings = df["aggregate_rating"].astype(str).str.split("/").str[0].str.strip()
         df["aggregate_rating"] = pd.to_numeric(
-            df["aggregate_rating"], errors="coerce"
+            ratings, errors="coerce"
         ).fillna(0.0)
 
     # ── 8. Add budget tier ────────────────────────────────────────────────
