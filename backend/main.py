@@ -55,7 +55,7 @@ app = FastAPI(
 # Allow the frontend (and local dev tools) to access the API.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://your-frontend-app.vercel.app"],
+    allow_origins=settings.cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
